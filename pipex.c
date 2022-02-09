@@ -6,7 +6,7 @@
 /*   By: latahbah <latahbah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 13:51:51 by latahbah          #+#    #+#             */
-/*   Updated: 2022/02/08 19:43:26 by latahbah         ###   ########.fr       */
+/*   Updated: 2022/02/09 11:41:23 by latahbah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ static void	child_proc2(t_data data, int fd[], int f2, char **paths)
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		return (perror("Dup2 fd Child2 error"));
 	if (dup2(f2, STDOUT_FILENO) == -1)
-	{
 		return (perror("Dup2 outfile fd Child2 error"));
-	}
 	if (close(fd[0]) == -1)
 		return (perror("Close fd[0] Child2 error!"));
 	exec_cmd(data, 3, paths);
@@ -111,7 +109,7 @@ int	main(int argc, char *argv[], char **envp)
 	data.argv = argv;
 	data.envp = envp;
 	pipex(data, f1, f2);
-	close(f1);
-	close(f2);
+	if (close(f1) == -1 || close(f2) == -1)
+		exit(EXIT_FAILURE);
 	return (0);
 }
