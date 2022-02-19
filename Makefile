@@ -6,15 +6,14 @@
 #    By: latahbah <latahbah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 16:18:28 by latahbah          #+#    #+#              #
-#    Updated: 2022/02/08 18:37:02 by latahbah         ###   ########.fr        #
+#    Updated: 2022/02/19 23:26:10 by latahbah         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-LIST =	retrieve_path.c	pipex.c
-
-LIB = libft/libft.a
+LIST =	retrieve_path.c	pipex.c utils.c \
+		ft_split.c		end.c
 
 OBJ = $(patsubst %.c,%.o,$(LIST))
 
@@ -25,32 +24,20 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME)::
-	@cd libft && make
-
-$(NAME):: $(OBJ)
-	gcc $(FLAGS) $(OPTFLAGS) $(OBJ) $(LIB) -I . -o $(NAME)
+$(NAME): $(OBJ)
+	gcc $(FLAGS) $(OPTFLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.c
 	gcc $(FLAGS) $(OPTFLAGS) -c $< -o $@ -MD
 
 include $(wildcard $(D_FILES))
 
-clean::
-	@cd libft && make clean
-
-clean::
+clean:
 	@rm -f $(OBJ) $(D_FILES)
 
-fclean:: clean
-	@cd libft && make fclean
-
-fclean:: clean
+fclean: clean
 	@rm -f $(NAME)
 
-re:: fclean all
-	@cd libft && make re
-
-re:: fclean	all
+re: fclean	all
 
 .PHONY: all clean fclean re bonus
