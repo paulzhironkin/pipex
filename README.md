@@ -4,7 +4,7 @@ In this project I implemented a pipe functionaity, using unix system calls `fork
 
 ### How to build:
 
-Clone repo and promt "make":
+Clone repo and type:
 
 ```Bash
 $ make
