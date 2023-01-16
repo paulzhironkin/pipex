@@ -7,25 +7,25 @@ In this project I implemented a pipe functionaity, using unix system calls `fork
 Clone repo and promt "make":
 
 ```Bash
-make
+$ make
 ```
 
 To clean object files:
 
 ```Bash
-make clean
+$ make clean
 ```
 
 To clean object and library files:
 
 ```Bash
-make fclean
+$ make fclean
 ```
 
 To remake:
 
 ```Bash
-make re
+$ make re
 ```
 
 ## How to use:
